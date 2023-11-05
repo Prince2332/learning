@@ -4,13 +4,15 @@ from django.http.response import (
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
+from django.urls import reverse
 
 # Create your views here.
 articles = {
     "sports": "Sports Page",
     "finance": "Finance Page",
     "politics": "Politics Page",
-    "games": "Gambaaa",
+    "games": "Games Page",
+    "anime": "Anime Page",
 }
 
 
@@ -30,4 +32,4 @@ def news_view(request, topic):
 def page_num_view(request, page_num):
     topic_list = list(articles.keys())
     topic = topic_list[page_num]
-    return HttpResponseRedirect(topic)
+    return HttpResponseRedirect(reverse("topic_page", args=[topic]))
